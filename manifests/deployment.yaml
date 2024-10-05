@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: continues-deployment
+  labels:
+    app: continues-deployment
+    kubernetes.azure.com/generator: devhub
+  # namespace: namespace-workflow-1726646664683
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: continues-deployment
+  template:
+    metadata:
+      labels:
+        app: continues-deployment
+    spec:
+      containers:
+        - name: continues-deployment
+          image: codelabs.azurecr.io/web-codelabs-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

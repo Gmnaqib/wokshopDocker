@@ -1,0 +1,49 @@
+{
+  "name": "beliver",
+  "version": "1.0.0",
+  "description": "beliver company profile ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha src/services/**/*.test.js",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "seed": "node ./src/configs/database/seeders/index.js",
+    "lint": "eslint src/**/*.{js,ts} --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lutfianRhdn/beliver-fashion.git"
+  },
+  "author": "Lutfian Rhdn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lutfianRhdn/beliver-fashion/issues"
+  },
+  "homepage": "https://github.com/lutfianRhdn/beliver-fashion#readme",
+  "dependencies": {
+    "@prisma/client": "^4.10.1",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cache-manager": "^5.2.1",
+    "chai": "^4.3.7",
+    "cors": "^2.8.5",
+    "devenv": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "prisma": "^4.10.1",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
+    "eslint": "^8.34.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "tailwindcss": "^3.2.7"
+  }
+}

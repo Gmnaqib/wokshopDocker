@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: continues-deployment
+  # namespace: namespace-workflow-1726646664683
+  labels:
+    kubernetes.azure.com/generator: devhub
+spec:
+  type: LoadBalancer
+  selector:
+    app: continues-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

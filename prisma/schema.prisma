@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        Int        @id @default(autoincrement())
+  nim       String     @unique(map: "Users_username_key")
+  name      String
+  role      Role @default(USER)
+  email     String     @unique
+  password  String
+  entry_year Int    @db.Year
+  major     String
+  motivation String
+  telegram String  
+  gender    Gender  @default(Male)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  detail users_detail?
+  assigment assigment?
+}
+
+enum Gender {
+  Male
+  Female
+}
+
+model users_detail {
+  id        Int        @id @default(autoincrement())
+  user_id   Int @unique
+  sub_riset String
+  cv        String
+  portfolio String
+  no_hp     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user users @relation(fields: [user_id], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model assigment {
+  id        Int        @id @default(autoincrement())
+  assigment_link String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user users @relation(fields: [user_id], references: [id])
+  user_id Int @unique
+}
+
+model sub_riset {
+  id        Int        @id @default(autoincrement())
+  sub_riset_name  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  courses course[]
+  announcements announcement[]
+}
+
+model course {
+  id        Int        @id @default(autoincrement())
+  link_course String?
+  thumbnail String?
+  title String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  research sub_riset @relation(fields: [research_id], references: [id])
+  research_id Int
+}
+
+model announcement {
+  id        Int        @id @default(autoincrement())
+  title   String
+  description String
+  category  Category @default(GENERAL)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  type sub_riset @relation(fields: [type_id], references: [id])
+  type_id Int
+}
+
+enum Category {
+  GENERAL
+  ASSIGNMENT
+}
+
+model setting {
+  id        Int        @id @default(autoincrement())
+  title String
+  start  DateTime
+  end DateTime
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
